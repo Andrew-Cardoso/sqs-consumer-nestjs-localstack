@@ -15,3 +15,10 @@
 ## Run
 1) docker compose up - Start localstack and postgres
 2) yarn start - Start app
+
+## Flow
+- On initialization the app will create a queue
+- Using Schedule/Con, every 5 seconds a new user will be added to queue
+- In the main GET page (http://localhost:3000) the endpoint will consume the next user and return the html with the info
+- When the next used in queue is consumed, a event will be emitted
+- There are two listeners, one is responsible for saving the user in the database and the other one will remove the consumed user from queue
